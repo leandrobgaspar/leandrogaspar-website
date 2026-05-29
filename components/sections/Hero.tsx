@@ -135,10 +135,10 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
             >
               <a
-                href="#services"
+                href="#projects"
                 className="px-8 py-3 rounded-xl bg-purple-gradient text-white font-semibold hover:shadow-purple transition-all duration-300 hover:scale-105 text-center"
               >
-                My Services
+                View Projects
               </a>
               <a
                 href="#contact"

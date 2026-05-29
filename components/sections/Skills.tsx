@@ -1,55 +1,73 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-const skills = [
-  { name: "JavaScript", icon: "🟨", color: "from-yellow-500/20 to-yellow-600/5" },
-  { name: "TypeScript", icon: "🔷", color: "from-blue-500/20 to-blue-600/5" },
-  { name: "React", icon: "⚛️", color: "from-cyan-500/20 to-cyan-600/5" },
-  { name: "Next.js", icon: "▲", color: "from-zinc-400/20 to-zinc-500/5" },
-  { name: "Node.js", icon: "🟩", color: "from-green-500/20 to-green-600/5" },
-  { name: "Python", icon: "🐍", color: "from-yellow-400/20 to-blue-500/5" },
-  { name: "Tailwind CSS", icon: "🌊", color: "from-teal-500/20 to-teal-600/5" },
-  { name: "Framer Motion", icon: "🎭", color: "from-pink-500/20 to-pink-600/5" },
-  { name: "HTML5", icon: "🌐", color: "from-orange-500/20 to-orange-600/5" },
-  { name: "CSS3", icon: "🎨", color: "from-blue-400/20 to-blue-500/5" },
-  { name: "PostgreSQL", icon: "🐘", color: "from-indigo-500/20 to-indigo-600/5" },
-  { name: "MongoDB", icon: "🍃", color: "from-green-600/20 to-green-700/5" },
-  { name: "Docker", icon: "🐳", color: "from-sky-500/20 to-sky-600/5" },
-  { name: "REST APIs", icon: "🔌", color: "from-purple-500/20 to-purple-600/5" },
-  { name: "Git", icon: "📦", color: "from-orange-600/20 to-orange-700/5" },
-  { name: "Linux", icon: "🐧", color: "from-slate-500/20 to-slate-600/5" },
-];
-
-const tools = [
-  { name: "Cursor", icon: "🖱️", highlight: true },
-  { name: "Claude AI", icon: "🤖", highlight: true },
-  { name: "GitHub", icon: "🐙", highlight: false },
-  { name: "Vercel", icon: "▲", highlight: false },
-  { name: "Postman", icon: "🟠", highlight: false },
+const categories = [
+  {
+    id: "frontend",
+    label: "Frontend",
+    color: "text-cyan-400",
+    activeBg: "bg-cyan-400/10 border-cyan-400/40",
+    skills: [
+      { name: "JavaScript", icon: "🟨" },
+      { name: "TypeScript", icon: "🔷" },
+      { name: "React", icon: "⚛️" },
+      { name: "Next.js", icon: "▲" },
+      { name: "Tailwind CSS", icon: "🌊" },
+      { name: "Framer Motion", icon: "🎭" },
+      { name: "HTML5", icon: "🌐" },
+      { name: "CSS3", icon: "🎨" },
+    ],
+  },
+  {
+    id: "backend",
+    label: "Backend",
+    color: "text-green-400",
+    activeBg: "bg-green-400/10 border-green-400/40",
+    skills: [
+      { name: "Node.js", icon: "🟩" },
+      { name: "Python", icon: "🐍" },
+      { name: "REST APIs", icon: "🔌" },
+      { name: "PostgreSQL", icon: "🐘" },
+      { name: "MongoDB", icon: "🍃" },
+      { name: "Docker", icon: "🐳" },
+      { name: "Linux", icon: "🐧" },
+      { name: "Git", icon: "📦" },
+    ],
+  },
+  {
+    id: "tools",
+    label: "Tools & AI",
+    color: "text-purple-DEFAULT",
+    activeBg: "bg-purple-DEFAULT/10 border-purple-DEFAULT/40",
+    skills: [
+      { name: "Cursor", icon: "🖱️", highlight: true },
+      { name: "Claude AI", icon: "🤖", highlight: true },
+      { name: "GitHub", icon: "🐙" },
+      { name: "Vercel", icon: "▲" },
+      { name: "Postman", icon: "🟠" },
+    ],
+  },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
+  hidden: { opacity: 0, scale: 0.85, y: 15 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
 };
 
 export default function Skills() {
+  const [active, setActive] = useState("frontend");
+  const current = categories.find((c) => c.id === active)!;
+
   return (
-    <section id="skills" className="py-24 relative bg-surface/30">
+    <section id="skills" aria-label="Skills" className="py-24 relative bg-surface/30">
       <div className="absolute inset-0 bg-gradient-radial from-orange/3 via-transparent to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -58,7 +76,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-orange font-mono text-sm tracking-widest uppercase mb-3">
             What I work with
@@ -69,65 +87,74 @@ export default function Skills() {
           </h2>
         </motion.div>
 
+        {/* Category tabs */}
+        <div className="flex justify-center gap-2 mb-10 flex-wrap">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActive(cat.id)}
+              className={cn(
+                "px-5 py-2 rounded-full text-sm font-semibold border transition-all duration-200",
+                active === cat.id
+                  ? `${cat.activeBg} ${cat.color}`
+                  : "glass border-border text-text-muted hover:text-text-secondary hover:border-border"
+              )}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills grid */}
         <motion.div
+          key={active}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3 mb-16"
+          animate="visible"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-4"
         >
-          {skills.map((skill) => (
+          {current.skills.map((skill) => (
             <motion.div
               key={skill.name}
               variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -4 }}
-              className={`relative flex flex-col items-center gap-3 p-4 rounded-2xl glass border border-border hover:border-purple-DEFAULT/30 transition-all cursor-default group bg-gradient-to-br ${skill.color}`}
+              whileHover={{ scale: 1.04, y: -3 }}
+              className={cn(
+                "flex items-center gap-3 p-4 rounded-2xl glass border transition-all cursor-default group",
+                "highlight" in skill && skill.highlight
+                  ? "border-purple-DEFAULT/30 bg-purple-DEFAULT/5 hover:border-purple-DEFAULT/50"
+                  : "border-border hover:border-purple-DEFAULT/25"
+              )}
             >
-              <span className="text-3xl">{skill.icon}</span>
-              <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors font-medium text-center">
+              <span className="text-2xl flex-shrink-0">{skill.icon}</span>
+              <span className={cn(
+                "text-sm font-medium transition-colors",
+                "highlight" in skill && skill.highlight
+                  ? "text-purple-light"
+                  : "text-text-secondary group-hover:text-text-primary"
+              )}>
                 {skill.name}
               </span>
+              {"highlight" in skill && skill.highlight && (
+                <span className="ml-auto text-[9px] font-mono text-purple-DEFAULT/60 bg-purple-DEFAULT/10 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                  AI
+                </span>
+              )}
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+        {/* Category description */}
+        <motion.p
+          key={active + "-desc"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="text-center text-text-muted text-sm font-mono"
         >
-          <h3 className="text-center text-2xl font-bold mb-8">
-            <span className="text-orange">Tools</span> I Use
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {tools.map((tool, i) => (
-              <motion.div
-                key={tool.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                className={`flex items-center gap-3 px-6 py-3 rounded-full border transition-all cursor-default ${
-                  tool.highlight
-                    ? "bg-purple-DEFAULT/10 border-purple-DEFAULT/30 hover:border-purple-DEFAULT/60 hover:bg-purple-DEFAULT/15"
-                    : "glass border-border hover:border-orange/30"
-                }`}
-              >
-                <span className="text-xl">{tool.icon}</span>
-                <span className={`font-medium ${tool.highlight ? "text-purple-light" : "text-text-secondary"}`}>
-                  {tool.name}
-                </span>
-                {tool.highlight && (
-                  <span className="text-[10px] font-mono text-purple-DEFAULT/70 bg-purple-DEFAULT/10 px-1.5 py-0.5 rounded-full">
-                    primary
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          {active === "frontend" && "Building pixel-perfect, animated UIs that work on every device"}
+          {active === "backend" && "APIs, databases, containers — the engine behind the interface"}
+          {active === "tools" && "AI-first workflow: Cursor + Claude AI for 10× faster development"}
+        </motion.p>
       </div>
     </section>
   );
