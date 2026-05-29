@@ -6,25 +6,27 @@ const skills = [
   { name: "JavaScript", icon: "🟨", color: "from-yellow-500/20 to-yellow-600/5" },
   { name: "TypeScript", icon: "🔷", color: "from-blue-500/20 to-blue-600/5" },
   { name: "React", icon: "⚛️", color: "from-cyan-500/20 to-cyan-600/5" },
+  { name: "Next.js", icon: "▲", color: "from-zinc-400/20 to-zinc-500/5" },
   { name: "Node.js", icon: "🟩", color: "from-green-500/20 to-green-600/5" },
   { name: "Python", icon: "🐍", color: "from-yellow-400/20 to-blue-500/5" },
+  { name: "Tailwind CSS", icon: "🌊", color: "from-teal-500/20 to-teal-600/5" },
+  { name: "Framer Motion", icon: "🎭", color: "from-pink-500/20 to-pink-600/5" },
   { name: "HTML5", icon: "🌐", color: "from-orange-500/20 to-orange-600/5" },
   { name: "CSS3", icon: "🎨", color: "from-blue-400/20 to-blue-500/5" },
   { name: "PostgreSQL", icon: "🐘", color: "from-indigo-500/20 to-indigo-600/5" },
   { name: "MongoDB", icon: "🍃", color: "from-green-600/20 to-green-700/5" },
   { name: "Docker", icon: "🐳", color: "from-sky-500/20 to-sky-600/5" },
-  { name: "Git", icon: "📦", color: "from-orange-600/20 to-orange-700/5" },
   { name: "REST APIs", icon: "🔌", color: "from-purple-500/20 to-purple-600/5" },
-  { name: "Next.js", icon: "▲", color: "from-zinc-400/20 to-zinc-500/5" },
+  { name: "Git", icon: "📦", color: "from-orange-600/20 to-orange-700/5" },
   { name: "Linux", icon: "🐧", color: "from-slate-500/20 to-slate-600/5" },
 ];
 
 const tools = [
-  { name: "VS Code", icon: "💙" },
-  { name: "GitHub", icon: "🐙" },
-  { name: "Postman", icon: "🟠" },
-  { name: "Figma", icon: "🎯" },
-  { name: "Vercel", icon: "▲" },
+  { name: "Cursor", icon: "🖱️", highlight: true },
+  { name: "Claude AI", icon: "🤖", highlight: true },
+  { name: "GitHub", icon: "🐙", highlight: false },
+  { name: "Vercel", icon: "▲", highlight: false },
+  { name: "Postman", icon: "🟠", highlight: false },
 ];
 
 const containerVariants = {
@@ -107,10 +109,21 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-3 px-6 py-3 rounded-full glass border border-border hover:border-orange/30 transition-all cursor-default"
+                className={`flex items-center gap-3 px-6 py-3 rounded-full border transition-all cursor-default ${
+                  tool.highlight
+                    ? "bg-purple-DEFAULT/10 border-purple-DEFAULT/30 hover:border-purple-DEFAULT/60 hover:bg-purple-DEFAULT/15"
+                    : "glass border-border hover:border-orange/30"
+                }`}
               >
                 <span className="text-xl">{tool.icon}</span>
-                <span className="text-text-secondary font-medium">{tool.name}</span>
+                <span className={`font-medium ${tool.highlight ? "text-purple-light" : "text-text-secondary"}`}>
+                  {tool.name}
+                </span>
+                {tool.highlight && (
+                  <span className="text-[10px] font-mono text-purple-DEFAULT/70 bg-purple-DEFAULT/10 px-1.5 py-0.5 rounded-full">
+                    primary
+                  </span>
+                )}
               </motion.div>
             ))}
           </div>

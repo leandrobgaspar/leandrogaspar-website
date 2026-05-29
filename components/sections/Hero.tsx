@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
 import Image from "next/image";
 
-const roles = ["Software Developer", "Full-Stack Developer", "Freelancer"];
+const roles = ["Full-Stack Developer", "Website Improver", "AI-Powered Developer", "Freelancer"];
 
 export default function Hero() {
   const [currentRole, setCurrentRole] = useState(0);
@@ -90,7 +90,7 @@ export default function Hero() {
             >
               Fullstack freelance developer from{" "}
               <span className="text-orange font-semibold">Rio de Janeiro, Brazil</span>.
-              Building modern web applications and personal projects.
+              I rebuild outdated websites into modern, fast experiences — powered by AI.
             </motion.p>
 
             <motion.div
@@ -135,10 +135,10 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
             >
               <a
-                href="#projects"
+                href="#services"
                 className="px-8 py-3 rounded-xl bg-purple-gradient text-white font-semibold hover:shadow-purple transition-all duration-300 hover:scale-105 text-center"
               >
-                View Projects
+                My Services
               </a>
               <a
                 href="#contact"

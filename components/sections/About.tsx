@@ -91,11 +91,21 @@ export default function About() {
 
             <motion.p
               variants={itemVariants}
-              className="text-text-secondary text-lg leading-relaxed mb-8"
+              className="text-text-secondary text-lg leading-relaxed mb-4"
             >
               I currently work as a{" "}
-              <span className="text-text-primary font-semibold">fullstack freelance developer</span> and
-              I love building my own personal projects — from web platforms to game servers.
+              <span className="text-text-primary font-semibold">fullstack freelance developer</span> —
+              rebuilding outdated websites into modern, fast, SEO-optimised experiences using{" "}
+              <span className="text-purple-DEFAULT font-semibold">Cursor</span> and{" "}
+              <span className="text-purple-DEFAULT font-semibold">Claude AI</span>.
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-text-secondary text-lg leading-relaxed mb-8"
+            >
+              I also build my own personal projects — from web platforms to game servers — and I love
+              automating the boring parts with AI so I can focus on what actually matters.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mb-8">
