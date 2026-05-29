@@ -45,15 +45,15 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <p className="text-purple-DEFAULT font-mono text-sm tracking-widest uppercase mb-3">
-            Sites melhorados
+            Improved websites
           </p>
           <h2 className="text-4xl sm:text-5xl font-bold">
-            Meus{" "}
-            <span className="gradient-text">Projetos</span>
+            My{" "}
+            <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-text-secondary mt-4 max-w-xl mx-auto">
-            Sites recriados com design moderno, performance e acessibilidade.
-            Clique na imagem para visualizar ao vivo.
+            Websites redesigned with modern aesthetics, performance and accessibility.
+            Click on the image to preview the live site.
           </p>
         </motion.div>
 
@@ -65,9 +65,9 @@ export default function Projects() {
           >
             <div className="text-6xl">🚧</div>
             <div>
-              <p className="text-text-primary font-semibold text-xl mb-2">Em breve</p>
+              <p className="text-text-primary font-semibold text-xl mb-2">Coming soon</p>
               <p className="text-text-secondary max-w-md">
-                Os projetos aparecerão aqui automaticamente conforme forem sendo publicados.
+                Projects will appear here automatically as they are published.
               </p>
             </div>
           </motion.div>
@@ -106,7 +106,7 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-purple-DEFAULT/0 group-hover:bg-purple-DEFAULT/10 transition-all duration-300 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100">
                       <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-DEFAULT/90 backdrop-blur-sm text-white text-sm font-semibold shadow-purple">
-                        <Globe size={14} /> Ver site ao vivo
+                        <Globe size={14} /> View live site
                       </div>
                     </div>
                   </div>

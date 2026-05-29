@@ -86,7 +86,7 @@ export default function ProjectModal({ url, title, onClose }: ProjectModalProps)
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface transition-all"
-                aria-label="Fechar"
+                aria-label="Close"
               >
                 <X size={16} />
               </button>
@@ -98,7 +98,7 @@ export default function ProjectModal({ url, title, onClose }: ProjectModalProps)
             {iframeState === "loading" && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background">
                 <div className="w-8 h-8 border-2 border-purple-DEFAULT/30 border-t-purple-DEFAULT rounded-full animate-spin" />
-                <p className="text-text-secondary text-sm">Carregando {title}...</p>
+                <p className="text-text-secondary text-sm">Loading {title}...</p>
               </div>
             )}
 
@@ -108,7 +108,7 @@ export default function ProjectModal({ url, title, onClose }: ProjectModalProps)
                 <div>
                   <p className="text-text-primary font-semibold mb-2">{title}</p>
                   <p className="text-text-secondary text-sm">
-                    Este site não permite visualização em iframe.
+                    This site does not allow iframe embedding.
                   </p>
                 </div>
                 <div className="flex gap-3">
@@ -118,7 +118,7 @@ export default function ProjectModal({ url, title, onClose }: ProjectModalProps)
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-gradient text-white text-sm font-medium hover:shadow-purple transition-all"
                   >
-                    <ExternalLink size={14} /> Abrir em nova aba
+                    <ExternalLink size={14} /> Open in new tab
                   </a>
                   <button
                     onClick={() => {
@@ -127,7 +127,7 @@ export default function ProjectModal({ url, title, onClose }: ProjectModalProps)
                     }}
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-text-secondary text-sm hover:text-text-primary hover:border-purple-DEFAULT/30 transition-all"
                   >
-                    <RefreshCw size={14} /> Tentar novamente
+                    <RefreshCw size={14} /> Try again
                   </button>
                 </div>
               </div>
